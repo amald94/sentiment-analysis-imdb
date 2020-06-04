@@ -1040,7 +1040,7 @@ function is triggered. In our example, we will use the code below.
         runtime = boto3.Session().client('sagemaker-runtime')
 
         # Now we use the SageMaker runtime to invoke our endpoint, sending the review we were given
-        response = runtime.invoke_endpoint(EndpointName = 'sagemaker-pytorch-2019-02-20-17-49-05-967',    # The name of the endpoint we created
+        response = runtime.invoke_endpoint(EndpointName = '#### your end point goes here ####',    # The name of the endpoint we created
                                            ContentType = 'text/plain',                 # The data format that is expected
                                            Body = event['body'])                       # The actual review
 
@@ -1061,11 +1061,6 @@ endpoint using the code cell below.
 
 ```python
     predictor.endpoint
-```
-
-```
-
-    'sagemaker-pytorch-2019-02-20-17-49-05-967'
 ```
 
 Once you have added the endpoint name to the Lambda function, click on
@@ -1194,10 +1189,4 @@ large bill.
 ```python
     predictor.delete_endpoint()
 ```
-
-```
-    INFO:sagemaker:Deleting endpoint with name: sagemaker-pytorch-2019-02-20-04-57-05-924
-
-```
-
      
