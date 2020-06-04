@@ -933,7 +933,10 @@ would first have to authenticate with AWS using an IAM role which
 included access to SageMaker endpoints. However, there is an easier way!
 We just need to use some additional AWS services.
 
-![](Web%20App%20Diagram.svg)
+<div align="center">
+<img src=images/Web%20App%20Diagram.svg >
+<p>Target Redshift AWS Architecture</p>
+</div>
 
 The diagram above gives an overview of how the various services will
 work together. On the far right is the model which we trained above and
@@ -1121,34 +1124,17 @@ app. What was the predicted sentiment of your example review?
 
 **Answer:**
 
-I took some reviews in rottentomatoes for "THE LEGO MOVIE 2"
+I took some reviews from IMDB for "Extraction Movie"
 
-**Critic**: For shockingly long stretches, this new Lego Movie is more
-of an ungainly, plodding jumble than a functional film.
+<div align="center">
+<img src=images/out1.png >
+<p>Target Redshift AWS Architecture</p>
+</div>
 
-**result**: Your review was NEGATIVE
-
-**Critic:** Like the plastic bricks themselves, these movies are as much
-fun for adults as for kids
-
-**result:** Your review was POSITIVE
-
-**Critic:** Not only are things no longer "awesome," they're all the way
-down to just "meh."
-
-**result:** Your review was NEGATIVE
-
-**Critic:** Some secret ingredient is missing from this Lego Movie's
-attempt to recapture the spirit of the original.
-
-**result:** Your review was NEGATIVE
-
-**Critic:** Emmet is still a sweet, adorably goofy hero who never quite
-has what it takes, and Banks is brilliant as Lucy, the real brains and
-brawn of the operation who grows increasingly frustrated with her
-friend's relentless optimism.
-
-**result:** Your review was POSITIVE
+<div align="center">
+<img src=images/out2.png >
+<p>Target Redshift AWS Architecture</p>
+</div>
 
 ### Delete the endpoint
 
