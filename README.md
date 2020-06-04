@@ -935,7 +935,6 @@ We just need to use some additional AWS services.
 
 <div align="center">
 <img src=images/Web%20App%20Diagram.svg >
-<p>Target Redshift AWS Architecture</p>
 </div>
 
 The diagram above gives an overview of how the various services will
@@ -1128,12 +1127,10 @@ I took some reviews from IMDB for "Extraction Movie"
 
 <div align="center">
 <img src=images/out1.png >
-<p>Target Redshift AWS Architecture</p>
 </div>
 
 <div align="center">
 <img src=images/out2.png >
-<p>Target Redshift AWS Architecture</p>
 </div>
 
 ### Delete the endpoint
