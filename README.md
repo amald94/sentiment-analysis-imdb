@@ -4,38 +4,9 @@ Creating a Sentiment Analysis Web App
 Using PyTorch and SageMaker
 ------------------------------------------------------------
 
-*Deep Learning Nanodegree Program | Deployment*
+*Machine Learning Nanodegree Program | Deployment*
 
 * * * * *
-
-Now that we have a basic understanding of how SageMaker works we will
-try to use it to construct a complete project from end to end. Our goal
-will be to have a simple web page which a user can use to enter a movie
-review. The web page will then send the review off to our deployed model
-which will predict the sentiment of the entered review.
-
-Instructions
-------------------------------
-
-Some template code has already been provided for you, and you will need
-to implement additional functionality to successfully complete this
-notebook. You will not need to modify the included code beyond what is
-requested. Sections that begin with '**TODO**' in the header indicate
-that you need to complete or implement some portion within them.
-Instructions will be provided for each section and the specifics of the
-implementation are marked in the code block with a `# TODO: ...`
-comment. Please be sure to read the instructions carefully!
-
-In addition to implementing code, there will be questions for you to
-answer which relate to the task and your implementation. Each section
-where you will answer a question is preceded by a '**Question:**'
-header. Carefully read each question and provide your answer below the
-'**Answer:**' header by editing the Markdown cell.
-
-> **Note**: Code and Markdown cells can be executed using the
-> **Shift+Enter** keyboard shortcut. In addition, a cell can be edited
-> by typically clicking it (double-click for Markdown cells) or by
-> pressing **Enter** while it is highlighted.
 
 General Outline
 ------------------------------------
@@ -210,7 +181,7 @@ the reviews. As a check to ensure we know how everything is working, try
 applying `review_to_words` to one of the reviews in the training set.
 
 ```python
-# TODO: Apply review_to_words to a review (train_X[100] or any other review)
+Apply review_to_words to a review (train_X[100] or any other review)
 review_to_words(train_X[100])
 ```
 
@@ -389,14 +360,14 @@ if the length of each review is the same. To do this, we will fix a size
 for our reviews and then pad short reviews with the category 'no word'
 (which we will label `0`) and truncate long reviews.
 
-### (TODO) Create a word dictionary
+### Create a word dictionary
 
 To begin with, we need to construct a way to map words that appear in
 the reviews to integers. Here we fix the size of our vocabulary
 (including the 'no word' and 'infrequent' categories) to be `5000` but
 you may wish to change this to see how it affects the model.
 
-> **TODO:** Complete the implementation for the `build_dict()` method
+> Complete the implementation for the `build_dict()` method
 > below. Note that even though the vocab\_size is set to `5000`, we only
 > want to construct a mapping for the most frequently appearing `4998`
 > words. This is because we want to reserve the special labels `0` for
@@ -410,14 +381,14 @@ from collections import Counter
 def build_dict(data, vocab_size = 5000):
 	"""Construct and return a dictionary mapping each of the most frequently appearing words to a unique integer."""
 	
-	# TODO: Determine how often each word appears in `data`. Note that `data` is a list of sentences and that a
+	#  Determine how often each word appears in `data`. Note that `data` is a list of sentences and that a
 	#       sentence is a list of words.
 	# print(np.concatenate( data[0:5], axis=0 ))
 	word_counts = Counter(np.concatenate( data, axis=0 ))
 	# print(word_counts)
 	# word_count = {} # A dict storing the words that appear in the reviews along with how often they occur
 	
-	# TODO: Sort the words found in `data` so that sorted_words[0] is the most frequently appearing word and
+	# Sort the words found in `data` so that sorted_words[0] is the most frequently appearing word and
 	#       sorted_words[-1] is the least frequently appearing word.
 	
 	sorted_words = sorted(word_counts, key=word_counts.get, reverse=True)
@@ -445,7 +416,7 @@ it doesn't make sence in training because 'movi', 'film', 'one', 'time'
 has no sentiment.
 
 ```python
-# TODO: Use this space to determine the five most frequently appearing words in the training set.
+#  Use this space to determine the five most frequently appearing words in the training set.
 word_counts = Counter(np.concatenate( train_X, axis=0 ))
 sorted_words = sorted(word_counts, key=word_counts.get, reverse=True)
 print(sorted_words[0:5])
@@ -685,7 +656,7 @@ train_sample_ds = torch.utils.data.TensorDataset(train_sample_X, train_sample_y)
 train_sample_dl = torch.utils.data.DataLoader(train_sample_ds, batch_size=50)
 ```
 
-### (TODO) Writing the training method
+### Writing the training method
 
 Next we need to write the training code itself. This should be very
 similar to training methods that you have written before to train
@@ -706,7 +677,7 @@ def train(model, train_loader, epochs, optimizer, loss_fn, device):
 			# model.zero_grad()
 			optimizer.zero_grad()
 			
-			# TODO: Complete this train method to train the model provided.
+			# Complete this train method to train the model provided.
 			output = model(batch_X)
 			loss = loss_fn(output, batch_y)
 			loss.backward()
@@ -759,7 +730,7 @@ uploaded directory (if there is one) for a `requirements.txt` file and
 install any required Python libraries, after which the training script
 will be run.
 
-### (TODO) Training the model
+### Training the model
 
 When a PyTorch model is constructed in SageMaker, an entry point must be
 specified. This is the Python file which will be executed when the model
@@ -768,7 +739,7 @@ which has been provided and which contains most of the necessary code to
 train our model. The only thing that is missing is the implementation of
 the `train()` method which you wrote earlier in this notebook.
 
-**TODO**: Copy the `train()` method written above and paste it into the
+Copy the `train()` method written above and paste it into the
 `train/train.py` file where required.
 
 The way that SageMaker passes hyperparameters to the training script is
@@ -837,10 +808,10 @@ on how long it has been running for.
 In other words **If you are no longer using a deployed endpoint, shut it
 down!**
 
-**TODO:** Deploy the trained model.
+ Deploy the trained model.
 
 ```python
-# TODO: Deploy the trained model
+# Deploy the trained model
 predictor = estimator.deploy(initial_instance_count=1, instance_type='ml.m4.xlarge')
 ```
 
@@ -889,7 +860,7 @@ sentiment analysis `XGBoost` is better because XGBoost is the state of
 the art in most regression and classification problems with better
 result and less training. since it is mono label classification problem
 
-### (TODO) More testing
+More testing
 
 We now have a trained model which has been deployed and which we can
 send processed reviews to and which returns the predicted sentiment.
@@ -914,7 +885,7 @@ things to the provided reviews.
 
 In order process the review we will need to repeat these two steps.
 
-**TODO**: Using the `review_to_words` and `convert_and_pad` methods from
+ Using the `review_to_words` and `convert_and_pad` methods from
 section one, convert `test_review` into a numpy array `test_data`
 suitable to send to our model. Remember that our model expects input of
 the form `review_length, review[500]`.
@@ -950,7 +921,7 @@ estimator.delete_endpoint()
 Step 7 (again): Use the model for the web app
 ------------------------------------------------------------------------------------------------
 
-> **TODO:** This entire section and the next contain tasks for you to
+> This entire section and the next contain tasks for you to
 > complete, mostly using the AWS console.
 
 So far we have been accessing our model endpoint by constructing a
@@ -1139,7 +1110,7 @@ and have them play with it too!
 > it down when you don't need it, otherwise you will end up with a
 > surprisingly large AWS bill.
 
-**TODO:** Make sure that you include the edited `index.html` file in
+Make sure that you include the edited `index.html` file in
 your project submission.
 
 Now that your web app is working, trying playing around with it and see
